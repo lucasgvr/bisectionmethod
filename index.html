@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Método da Bisecção | Lucas Rocha</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <p id="titleDefault">Seguindo o padrão Ax<sup>2</sup> + Bx + C</p>
+    <div id="first">
+        <label for="getOrder">Digite a ordem da função:</label>
+        <input type="text" id="getOrder">
+    
+        
+        <button id="generateInputs">Gerar Inputs</button>
+        <div id="numInputContainer"></div>
+    </div>
+
+    <br />
+
+    <div id="first">
+        <label for="getPrecision">Digite a precisão do cálculo:</label>
+        <input type="text" id="getPrecision">
+
+        <button id="calculateAll">Calcular</button>
+    </div>
+
+    <div id="resultsText">
+        <div>
+            <p id="strongRoots"></p><ul id="resultRoots"></ul>
+        </div>
+        <div>
+            <p id="strongIntervals"></p><ul id="resultIntervals"></ul>
+        </div>
+        <div>
+            <p id="strongPrecision"></p><ul id="resultPrecision"></ul>
+        </div>
+    </div>
+
+    <div id="root"></div>
+</body>
+
+<script src="https://unpkg.com/function-plot/dist/function-plot.js"></script>
+<script src="main.js"></script>
+
+</html>
