@@ -28,47 +28,52 @@ function calculateIntervals() {
     intervals = []
     intervalsDefault = []
 
-    for(let i = -6; i < 6; i++) {
+    for(let numTest = -4; numTest <= 4; numTest++) {
         let elevate = order
 
-        let numA = 0
-        let numB = 0
+        let resultA = 0
+        let resultB = 0
+        
+        let numTestSucessor = numTest + 1
 
-        let k = i + 1
+        for(let i = 0; i < numbers.length; i++) {
+            resultA += numbers[i]*(numTest**elevate)
+            resultB += numbers[i]*(numTestSucessor**elevate)
+            
+            elevate--
+        }
 
-        while(elevate >= 1) {
-            for(let j = 0; j < numbers.length ; j++) {
-                numA += numbers[j]*(i**(elevate))
-                numB += numbers[j]*(k**(elevate))
+        if(resultA == 0) {
+            roots.push(numTest)
+        }
 
-                if(numA < 0 && numB > 0) {
-                    intervals.push([i, k])
-            
-                    if (i < j) {
-                        intervalsDefault.push([i, k])
-                    }
-            
-                    if (i > j) {
-                        intervalsDefault.push([j, k])
-                    }
-                }
-            
-                if(numA > 0 && numB < 0) {
-                    intervals.push([k, i])
-            
-                    if (i < j) {
-                        intervalsDefault.push([i, k])
-                    }
-            
-                    if (i > j) {
-                        intervalsDefault.push([j, k])
-                    }
-                }
+        if(resultA < 0 && resultB > 0) {
+            intervals.push([numTest, numTestSucessor])
 
-                elevate--
+            if(numTest < numTestSucessor) {
+                intervalsDefault.push([numTest, numTestSucessor])
+            }
+
+            if(numTest > numTestSucessor) {
+                intervalsDefault.push([numTestSucessor, numTest])
+            }
+        }
+
+        if(resultA > 0 && resultB < 0) {
+            intervals.push([numTestSucessor, numTest])
+
+            if(numTest < numTestSucessor) {
+                intervalsDefault.push([numTest, numTestSucessor])
+            }
+
+            if(numTest > numTestSucessor) {
+                intervalsDefault.push([numTestSucessor, numTest])
             }
         }
     }
+
+    console.log(intervals)
+    console.log(intervalsDefault)
 }
 
 function calculateRoots() {
@@ -211,6 +216,8 @@ function drawFunction() {
         }
       ]
     });
+
+    expression = ""
 }
 
 document.getElementById("generateInputs").addEventListener('click', addInputs)
